@@ -51,7 +51,7 @@ tasks {
         relocate("dev.romainguy.kotlin.math", "com.willfp.libreforge.libs.math")
         relocate("org.apache.maven", "com.willfp.eco.libs.maven")
         relocate("com.willfp.modelenginebridge", "com.willfp.libreforge.libs.modelenginebridge")
-        relocate("com.github.Anon8281.universalScheduler", "com.willfp.libreforge.libs.universalScheduler")
+//        relocate("com.github.Anon8281.universalScheduler", "com.willfp.libreforge.libs.universalScheduler")
     }
 
     build {
