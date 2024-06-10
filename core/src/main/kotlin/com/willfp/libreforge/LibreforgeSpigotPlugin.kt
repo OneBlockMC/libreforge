@@ -33,6 +33,7 @@ import com.willfp.libreforge.triggers.DispatchedTriggerFactory
 import org.bukkit.Bukkit
 import org.bukkit.entity.LivingEntity
 import org.bukkit.event.Listener
+import java.util.function.Consumer
 
 internal lateinit var plugin: LibreforgeSpigotPlugin
     private set
@@ -133,13 +134,29 @@ class LibreforgeSpigotPlugin : EcoPlugin() {
              */
             var currentOffset = 30L
             for (world in Bukkit.getWorlds()) {
-                plugin.scheduler.runTimer(currentOffset, configYml.getInt("refresh.entities.interval").toLong()) {
-                    for (entity in world.entities) {
-                        if (entity is LivingEntity) {
-                            entity.toDispatcher().refreshHolders()
+
+                for (chunk in world.loadedChunks) {
+                    Bukkit.getRegionScheduler().runAtFixedRate(plugin, world, chunk.x, chunk.z, {
+                        for (entity in world.entities) {
+                            entity.scheduler.run(plugin, {
+                                if (entity is LivingEntity) {
+                                    entity.toDispatcher().refreshHolders()
+                                }
+                            }, null)
                         }
-                    }
+
+                    }, currentOffset, currentOffset)
                 }
+
+//                plugin.scheduler.runTimer(currentOffset, configYml.getInt("refresh.entities.interval").toLong()) {
+//                    for (entity in world.entities) {
+//                        entity.scheduler.run(plugin, {
+//                            if (entity is LivingEntity) {
+//                                entity.toDispatcher().refreshHolders()
+//                            }
+//                        }, null)
+//                    }
+//                }
                 currentOffset += 3
             }
         }

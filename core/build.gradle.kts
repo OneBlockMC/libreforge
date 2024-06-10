@@ -4,7 +4,7 @@ dependencies {
     }
     implementation("com.willfp:ModelEngineBridge:1.3.0")
 
-    compileOnly("com.willfp:eco:6.70.0")
+    compileOnly("com.willfp:eco:6.70.1")
     compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
     compileOnly("net.kyori:adventure-text-minimessage:4.14.0")
 
@@ -29,6 +29,10 @@ dependencies {
     compileOnly(fileTree("../lib") {
         include("*.jar")
     })
+
+    implementation("com.github.Anon8281:UniversalScheduler:0.1.6") {
+        isTransitive = true
+    }
 }
 
 repositories {
@@ -47,6 +51,7 @@ tasks {
         relocate("dev.romainguy.kotlin.math", "com.willfp.libreforge.libs.math")
         relocate("org.apache.maven", "com.willfp.eco.libs.maven")
         relocate("com.willfp.modelenginebridge", "com.willfp.libreforge.libs.modelenginebridge")
+        relocate("com.github.Anon8281.universalScheduler", "com.willfp.libreforge.libs.universalScheduler")
     }
 
     build {

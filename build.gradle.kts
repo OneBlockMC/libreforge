@@ -36,6 +36,7 @@ allprojects {
         maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
         maven("https://maven.citizensnpcs.co/repo")
         maven("https://nexuslite.gcnt.net/repos/other/")
+        maven("https://jitpack.io")
     }
 
     dependencies {
