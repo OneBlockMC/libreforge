@@ -145,7 +145,7 @@ class LibreforgeSpigotPlugin : EcoPlugin() {
                             }, null)
                         }
 
-                    }, currentOffset, currentOffset)
+                    }, currentOffset, configYml.getInt("refresh.entities.interval").toLong())
                 }
 
 //                plugin.scheduler.runTimer(currentOffset, configYml.getInt("refresh.entities.interval").toLong()) {
